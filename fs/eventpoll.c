@@ -1,6 +1,8 @@
+
 /*
  *  fs/eventpoll.c (Efficient event retrieval implementation)
  *  Copyright (C) 2001,...,2009	 Davide Libenzi
+ *  Copyright (C) 2021 XiaoMi, Inc.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -1400,7 +1402,7 @@ static int ep_create_wakeup_source(struct epitem *epi)
 	}
 
 	take_dentry_name_snapshot(&n, epi->ffd.file->f_path.dentry);
-	ws = wakeup_source_register(n.name);
+	ws = wakeup_source_register(NULL, n.name);
 	release_dentry_name_snapshot(&n);
 
 	if (!ws)
